@@ -1,0 +1,7 @@
+[INFO] |  +- org.eclipse.jetty.websocket:websocket-client:jar:9.4.58.v20250814:test
+[INFO] |  |  \- org.eclipse.jetty.websocket:websocket-common:jar:9.4.58.v20250814:test
+[INFO] |  |     \- org.eclipse.jetty.websocket:websocket-api:jar:9.4.58.v20250814:test
+[INFO] |  +- org.eclipse.jetty:jetty-util:jar:9.4.58.v20250814:test
+[INFO] |  +- org.eclipse.jetty:jetty-util-ajax:jar:9.4.58.v20250814:test
+[INFO] |  +- org.eclipse.jetty:jetty-servlet:jar:9.4.58.v20250814:compile
+[INFO] |  +- org.eclipse.jetty:jetty-webapp:jar:9.4.58.v20250814:compile
