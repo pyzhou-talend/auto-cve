@@ -52,8 +52,8 @@ public class GitUtil {
 //        gitUtil.cleanAll();
 
 //        gitUtil.createBranchViaResult();
-        gitUtil.commitListRepos();
-        gitUtil.PushListRepos();
+//        gitUtil.commitListRepos();
+//        gitUtil.PushListRepos();
 //        gitUtil.cherryPick();
     }
 
@@ -65,7 +65,7 @@ public class GitUtil {
         final List<String> repos = getRepos();
         //pyzhou/TDI-51498_dnsjava_cve_8.0
         final String jiraId = ConfigManager.getInstance().getProperty("jira_id");
-        final String devBranch = "pyzhou/" + jiraId + "_" + jarName + "_cve_" + normalizeBranch();
+        final String devBranch = Context.git_your_name +"/" + jiraId + "_" + jarName + "_cve_" + normalizeBranch();
         for (String repo : repos) {
             log.info("About to commit pom files in dev branch {} in repository: {}", devBranch, repo);
 
@@ -95,7 +95,7 @@ maintenance 开头的branch不能提交，会检查并报错
         final List<String> repos = getRepos();
         //pyzhou/TDI-51498_dnsjava_cve_8.0
         final String jiraId = ConfigManager.getInstance().getProperty("jira_id");
-        final String devBranch = "pyzhou/" + jiraId + "_" + jarName + "_cve_" + normalizeBranch();
+        final String devBranch = Context.git_your_name +"/" + jiraId + "_" + jarName + "_cve_" + normalizeBranch();
         for (String repo : repos) {
             log.info("About to push dev branch {} in repository: {}", devBranch, repo);
 
@@ -116,7 +116,7 @@ maintenance 开头的branch不能提交，会检查并报错
 
     public void createBranchViaResult() throws IOException, GitAPIException {
         final List<String> repos = getRepos();
-        final String devBranch = "pyzhou/" + ConfigManager.getInstance().getProperty("jira_id") + "_" + jarName + "_cve_" + normalizeBranch();
+        final String devBranch = Context.git_your_name +"/" + ConfigManager.getInstance().getProperty("jira_id") + "_" + jarName + "_cve_" + normalizeBranch();
         for (String repo : repos) {
             log.info("About to create and checkout dev branch {} in repository: {}", devBranch, repo);
             try (Git git = Git.open(new File(git_repository + repo))) {
@@ -349,7 +349,7 @@ maintenance 开头的branch不能提交，会检查并报错
             String commitID = line.substring(i);
             try (Git git = Git.open(new File(git_repository + repo))) {
                 checkoutAndPull("connectors-lib-se".equals(repo) ? "main" : "master", git_repository + repo);
-                final String devBranch_target = "pyzhou/" + ConfigManager.getInstance().getProperty("jira_id") + "_" + jarName + "_cve_master";
+                final String devBranch_target = Context.git_your_name +"/" + ConfigManager.getInstance().getProperty("jira_id") + "_" + jarName + "_cve_master";
                 git.branchCreate().setName(devBranch_target).call();
                 log.info("Creating branch {}", devBranch_target);
                 git.cherryPick().include(ObjectId.fromString(commitID)).call();
@@ -402,7 +402,7 @@ maintenance 开头的branch不能提交，会检查并报错
         for (String repo : repos) {
             try (Git git = Git.open(new File(git_repository + repo))) {
                 final String jiraId = ConfigManager.getInstance().getProperty("jira_id");
-                final String devBranch = "pyzhou/" + jiraId + "_" + jarName + "_cve_" + normalizeBranch();
+                final String devBranch = Context.git_your_name +"/" + jiraId + "_" + jarName + "_cve_" + normalizeBranch();
                 checkoutAndPull(devBranch, git_repository + repo);
                 final Iterable<RevCommit> call = git.log().call();
                 final RevCommit next = call.iterator().next();
@@ -413,7 +413,7 @@ maintenance 开头的branch不能提交，会检查并报错
 
                 checkoutAndPull("connectors-lib-se".equals(repo) ? "main" : "master", git_repository + repo);
 
-                final String devBranch_target = "pyzhou/" + ConfigManager.getInstance().getProperty("jira_id") + "_" + jarName + "_cve_master";
+                final String devBranch_target = Context.git_your_name +"/" + ConfigManager.getInstance().getProperty("jira_id") + "_" + jarName + "_cve_master";
                 git.branchCreate().setName(devBranch_target).call();
                 log.info("Creating branch {}", devBranch_target);
                 git.cherryPick().include(next).call();

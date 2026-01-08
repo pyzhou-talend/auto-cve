@@ -9,6 +9,7 @@ public class Context {
     public static final String forest_folder = ConfigManager.getInstance().getProperty("forest_folder");
     public static final String result_folder =  ConfigManager.getInstance().getProperty("result_folder");
     public static final String git_repository = ConfigManager.getInstance().getProperty("git_repository");
+    public static final String git_your_name = ConfigManager.getInstance().getProperty("git_your_name");
     public static final String git_user = ConfigManager.getInstance().getProperty("git_user");
     public static final String git_token = ConfigManager.getInstance().getProperty("git_token");
     public final static String se = git_repository+"connectors-se";
