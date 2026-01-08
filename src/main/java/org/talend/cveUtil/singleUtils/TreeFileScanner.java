@@ -1,5 +1,6 @@
 package org.talend.cveUtil.singleUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -14,8 +15,13 @@ public class TreeFileScanner {
      */
 
     public static void main(String[] args) {
+        new TreeFileScanner().runScanner();
+    }
+
+    private void runScanner(){
         // 指定要扫描的文件夹路径
-        String folderPath = "D:\\git\\connectors-ee\\tree.log";
+        String folderPath = "C:\\work\\git_CVE\\forest\\maintenance_8.0\\cloud-components";
+        String keyword = "io.netty";
 
         Path folder = Paths.get(folderPath);
 
@@ -26,9 +32,9 @@ public class TreeFileScanner {
                             List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
                             for (int lineNumber = 0; lineNumber < lines.size(); lineNumber++) {
                                 String line = lines.get(lineNumber);
-                                if (line.contains("io.netty") && !line.contains("4.1.108") && !line.contains("2.0.61.Final")) {
-                                    System.out.println("File: " + filePath + ", Line " + (lineNumber + 1) + ": " + line);
-//                                    System.out.println(line);
+                                if (line.contains(keyword) && !line.contains("4.1.108") && !line.contains("2.0.61.Final")) {
+//                                    System.out.println("File: " + filePath + ", Line " + (lineNumber + 1) + ": " + line);
+                                    System.out.println(line);
                                 }
                             }
                         } catch (IOException e) {

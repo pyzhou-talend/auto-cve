@@ -48,7 +48,7 @@ public class GitUtil {
 
     public static void main(String[] args) throws GitAPIException, IOException {
         GitUtil gitUtil = new GitUtil();
-//        gitUtil.switchBranch();
+        gitUtil.switchBranch();
 //        gitUtil.cleanAll();
 
 //        gitUtil.createBranchViaResult();
