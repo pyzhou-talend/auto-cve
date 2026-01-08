@@ -1,0 +1,14 @@
+git clone https://github.com/Talendtcommon-studio-se.git
+git clone https://github.com/Talendtcommon-studio-ee.git
+git clone https://github.com/Talendtdi-studio-se.git
+git clone https://github.com/Talendtbd-studio-se.git
+git clone https://github.com/Talendtdi-studio-ee.git
+git clone https://github.com/Talendcomponents.git
+git clone https://github.com/Talendcomponents-ee.git
+git clone https://github.com/Talendconnectors-se.git
+git clone https://github.com/Talendconnectors-ee.git
+git clone https://github.com/Talendcloud-components.git
+git clone https://github.com/Talendtalend-sap-api.git
+git clone https://github.com/Talendtsap-rfc-server.git
+git clone https://github.com/Talendconnectors-lib-se.git
+git clone https://github.com/Talendconnectors-lib-ee.git

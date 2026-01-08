@@ -1,6 +1,5 @@
 package org.talend.cveUtil.common;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,10 +7,10 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigManager {
+
     private static ConfigManager instance;
+
     private Properties props;
-
-
 
     private ConfigManager() {
         props = new Properties();
@@ -19,17 +18,18 @@ public class ConfigManager {
 
         try {
 
-
-            final String dir = System.getProperty("user.dir");
-            System.out.println(dir);
-            final File configFile = new File(dir + "/config.properties");
-            System.out.println(configFile);
+            File configFile = new File(this.getClass().getResource("/config.properties").getFile());
+            if (!configFile.exists()) {
+                final String dir = System.getProperty("user.dir");
+                configFile = new File(dir + "/config.properties");
+            }
+                        System.out.println("Using config fileL "+configFile);
             if (configFile.exists()) {
                 inputStream = new FileInputStream(configFile);
-            } else  {
+            } else {
                 final String config_path = System.getProperty("config_path");
                 System.out.println(config_path);
-                if(config_path!=null && new File(config_path).exists()){
+                if (config_path != null && new File(config_path).exists()) {
                     inputStream = new FileInputStream((config_path));
                 }
             }
@@ -51,7 +51,7 @@ public class ConfigManager {
         }
     }
 
-    public static  ConfigManager getInstance() {
+    public static ConfigManager getInstance() {
         if (instance == null) {
             instance = new ConfigManager();
         }
@@ -60,8 +60,8 @@ public class ConfigManager {
 
     public String getProperty(String key) {
         final String property = props.getProperty(key);
-        if(property==null || "".equals(property)){
-            throw new RuntimeException("config.properties <"+key +"> Not found in config.properties");
+        if (property == null || "".equals(property)) {
+            throw new RuntimeException("config.properties <" + key + "> Not found in config.properties");
         }
         return property;
     }
