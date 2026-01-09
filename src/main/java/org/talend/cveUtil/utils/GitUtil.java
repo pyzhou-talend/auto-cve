@@ -132,7 +132,7 @@ maintenance 开头的branch不能提交，会检查并报错
     private List<String> getRepos() throws IOException {
         final List<String> search_result = FileUtils.readLines(new File(result_folder + jarName + "/search_result.log"));
         List<String> result = new ArrayList<>();
-        final List<String> collect = search_result.stream().filter(e -> !e.startsWith(" ")).collect(Collectors.toList());
+        final List<String> collect = search_result.stream().filter(e -> !e.startsWith(" ")).map(k->k.replaceAll("#","")).collect(Collectors.toList());
         result.addAll(collect);
         return result;
     }
