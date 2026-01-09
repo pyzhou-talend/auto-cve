@@ -21,6 +21,7 @@ import static org.talend.cveUtil.common.Context.tdi_studio_se;
 import static org.talend.cveUtil.common.Context.tsap_rfc_server;
 
 import org.apache.commons.io.FileUtils;
+import org.eclipse.jgit.api.CreateBranchCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ResetCommand;
 import org.eclipse.jgit.api.errors.EmptyCommitException;
@@ -30,7 +31,9 @@ import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.RefDatabase;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.transport.FetchResult;
 import org.eclipse.jgit.transport.PushResult;
+import org.eclipse.jgit.transport.RefSpec;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -258,12 +261,27 @@ maintenance 开头的branch不能提交，会检查并报错
     public boolean checkoutAndPull(String targetBranch, String repoPath) {
 
         try (Git git = Git.open(new File(repoPath))) {
+            Repository repo = git.getRepository();
             git.clean().setCleanDirectories(true).setForce(true).setIgnore(false).call();
             git.reset().setMode(ResetCommand.ResetType.HARD).call();
 
-            git.fetch().setCredentialsProvider(provider).call();
-            // 切换到master分支（或main分支，根据你的仓库设置）
-            git.checkout().setName(targetBranch).call();
+
+            git.fetch().setCredentialsProvider(provider)
+                    .setRemote("origin")
+                    .call();
+            // 本地不存在才创建
+            if (repo.findRef("refs/heads/" + targetBranch) == null) {
+                git.checkout()
+                        .setCreateBranch(true)
+                        .setName(targetBranch)
+                        .setStartPoint("origin/" + targetBranch)
+                        .setUpstreamMode(CreateBranchCommand.SetupUpstreamMode.TRACK)
+                        .call();
+            } else {
+                git.checkout()
+                        .setName(targetBranch)
+                        .call();
+            }
 //            // 拉取远程的最新更改
 //            // 注意：这里假设远程仓库的默认远程名称为origin，并且你想要拉取的是origin/master（或origin/main）
             git.pull().setCredentialsProvider(provider).call();

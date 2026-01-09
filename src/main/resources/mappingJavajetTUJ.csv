@@ -89,7 +89,7 @@ tCombinedSQLOutput,Databases/ELT/CombinedSQL
 tContextDump,Misc/ContextDump
 tContextLoad,Misc/ContextLoad
 tConvertType,Processing/ConvertType
-tCreateTable,Databases/SQLTemplate
+tCreateTable,Databases
 tCreateTemporaryFile,File/CreateTemporaryFile
 tDB2BulkExec,Databases/DB2
 tDB2Close,Databases/DB2
