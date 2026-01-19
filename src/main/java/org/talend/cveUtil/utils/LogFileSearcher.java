@@ -41,9 +41,9 @@ public class LogFileSearcher {
             logFileSearcher.searchJar(jar, Context.tdi_studio_ee_components_sap, ".xml");
             logFileSearcher.searchJar(jar, Context.tbd_studio_se_components, ".xml");
 
-            logFileSearcher.searchJar(jar, Context.tcommon_studio_se_plugins + "org.talend.designer.maven.repo.tck/", "pom.xml");
-            logFileSearcher.searchJar(jar, Context.tcommon_studio_se_plugins + "org.talend.designer.maven.repo.tcksdk/", "pom.xml");
-            logFileSearcher.searchJar(jar, Context.tcommon_studio_se_plugins + "org.talend.designer.maven.repo.tcompv0/", "pom.xml");
+//            logFileSearcher.searchJar(jar, Context.tcommon_studio_se_plugins + "org.talend.designer.maven.repo.tck/", "pom.xml");
+//            logFileSearcher.searchJar(jar, Context.tcommon_studio_se_plugins + "org.talend.designer.maven.repo.tcksdk/", "pom.xml");
+//            logFileSearcher.searchJar(jar, Context.tcommon_studio_se_plugins + "org.talend.designer.maven.repo.tcompv0/", "pom.xml");
 //            logFileSearcher.searchJar(jar, Context.tcommon_studio_se_plugins + "org.talend.designer.maven.tos/", "pom.xml");
         }
 
@@ -90,8 +90,9 @@ public class LogFileSearcher {
                 } else {//javajet components
                     //D:\DE\git_CVE\tdi-studio-se\main\plugins\org.talend.designer.components.localprovider\components\tAmazonEMRManage\tAmazonEMRManage_java.xml
                     final String absolutePath = file.getAbsolutePath();
-
-                    if (absolutePath.contains("tdi-studio-se") && !names.contains("#tdi-studio-se")) {
+                    if(absolutePath.contains("studio") && !names.contains("#studio")) {
+                        names.add("#studio");
+                    } else if (absolutePath.contains("tdi-studio-se") && !names.contains("#tdi-studio-se")) {
                         names.add("#tdi-studio-se");
                     } else if (absolutePath.contains("components_dynamic") && !names.contains("#tdi-studio-ee")) {
                         names.add("#tdi-studio-ee-dynamic");
@@ -139,7 +140,7 @@ public class LogFileSearcher {
                 }
             }
 //            System.out.println(foundFileSet.size());
-            log.info("Appending FoundResult.log size:{}",foundFileSet.size());
+            log.info("Appending {} size:{}",Context.result_folder + jarName + "/FoundResult.log",foundFileSet.size());
             FileUtils.writeLines(new File(Context.result_folder + jarName + "/FoundResult.log"), foundFileSet, true);
             System.out.println(collect);
 

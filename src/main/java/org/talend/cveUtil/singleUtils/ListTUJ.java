@@ -22,12 +22,12 @@ public class ListTUJ {
         ListTUJ listTUJ = new ListTUJ();
 
         //        scanTestCycle();//扫描最新的test cycle
-        //        listFeature();//扫描最新的studio component列表
+                listFeature();//扫描最新的studio component列表
         //        listTUJ.scanJavajetComponents();//扫描所有javajet component
 
 //        listTUJ.scanAPITestGroup(); //扫描APITestgroup 结果在resources/MiddleResult/APITestGroups.csv
 
-        listTUJ.cleanDuplicateItem();
+//        listTUJ.cleanDuplicateItem();
 
     }
 
@@ -99,7 +99,7 @@ public class ListTUJ {
 
     public static void listFeature() throws IOException {
         String filePath =
-                Context.tcommon_studio_ee + "\\main\\plugins\\org.talend.studiolite.p2.featmanage\\resources\\category.xml";
+                Context.studio_in_one + "\\packaging\\main\\plugins\\org.talend.studiolite.p2.featmanage\\resources\\category.xml";
         List<String> features = Files.readAllLines(Paths.get(filePath)).stream().map(String::trim)
                 .filter(line -> line.startsWith("<feature"))
                 .map(feature -> feature.substring(feature.indexOf("id=\"") + 4, feature.lastIndexOf("\"")))

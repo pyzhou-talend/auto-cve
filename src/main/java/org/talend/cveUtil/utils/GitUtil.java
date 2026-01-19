@@ -12,12 +12,13 @@ import static org.talend.cveUtil.common.Context.git_user;
 import static org.talend.cveUtil.common.Context.jarName;
 import static org.talend.cveUtil.common.Context.result_folder;
 import static org.talend.cveUtil.common.Context.se;
+import static org.talend.cveUtil.common.Context.studio_in_one;
 import static org.talend.cveUtil.common.Context.talend_sap_api;
-import static org.talend.cveUtil.common.Context.tbd_studio_se;
-import static org.talend.cveUtil.common.Context.tcommon_studio_ee;
-import static org.talend.cveUtil.common.Context.tcommon_studio_se;
-import static org.talend.cveUtil.common.Context.tdi_studio_ee;
-import static org.talend.cveUtil.common.Context.tdi_studio_se;
+//import static org.talend.cveUtil.common.Context.tbd_studio_se;
+//import static org.talend.cveUtil.common.Context.tcommon_studio_ee;
+//import static org.talend.cveUtil.common.Context.tcommon_studio_se;
+//import static org.talend.cveUtil.common.Context.tdi_studio_ee;
+//import static org.talend.cveUtil.common.Context.tdi_studio_se;
 import static org.talend.cveUtil.common.Context.tsap_rfc_server;
 
 import org.apache.commons.io.FileUtils;
@@ -200,11 +201,12 @@ maintenance 开头的branch不能提交，会检查并报错
             checkoutAndPull("main", connectors_lib_se);
             checkoutAndPull("maintenance/8.0", component);
             checkoutAndPull("maintenance/8.0", component_ee);
-            checkoutAndPull("maintenance/8.0.2", tdi_studio_se);
-            checkoutAndPull("maintenance/8.0.2", tdi_studio_ee);
-            checkoutAndPull("maintenance/8.0.2", tbd_studio_se);
-            checkoutAndPull("maintenance/8.0.2", tcommon_studio_se);
-            checkoutAndPull("maintenance/8.0.2", tcommon_studio_ee);
+            checkoutAndPull("maintenance/8.0.2", studio_in_one);
+//            checkoutAndPull("maintenance/8.0.2", tdi_studio_se);
+//            checkoutAndPull("maintenance/8.0.2", tdi_studio_ee);
+//            checkoutAndPull("maintenance/8.0.2", tbd_studio_se);
+//            checkoutAndPull("maintenance/8.0.2", tcommon_studio_se);
+//            checkoutAndPull("maintenance/8.0.2", tcommon_studio_ee);
             checkoutAndPull("master", talend_sap_api);
             checkoutAndPull("master", tsap_rfc_server);
         } else if ("7.3".equals(branchName)) {
@@ -214,11 +216,12 @@ maintenance 开头的branch不能提交，会检查并报错
             checkoutAndPull("maintenance/7.3", connectors_lib_se);
             checkoutAndPull("maintenance/7.3", component);
             checkoutAndPull("maintenance/7.3", component_ee);
-            checkoutAndPull("maintenance/7.3", tdi_studio_se);
-            checkoutAndPull("maintenance/7.3", tdi_studio_ee);
-            checkoutAndPull("maintenance/7.3", tbd_studio_se);
-            checkoutAndPull("maintenance/7.3", tcommon_studio_se);
-            checkoutAndPull("maintenance/7.3", tcommon_studio_ee);
+//            checkoutAndPull("maintenance/7.3", tdi_studio_se);
+//            checkoutAndPull("maintenance/7.3", tdi_studio_ee);
+//            checkoutAndPull("maintenance/7.3", tbd_studio_se);
+//            checkoutAndPull("maintenance/7.3", tcommon_studio_se);
+//            checkoutAndPull("maintenance/7.3", tcommon_studio_ee);
+
             checkoutAndPull("maintenance/8.1", talend_sap_api);
             checkoutAndPull("maintenance/7.3", tsap_rfc_server);
         } else if ("master".equals(branchName)) {
@@ -228,11 +231,26 @@ maintenance 开头的branch不能提交，会检查并报错
             checkoutAndPull("main", connectors_lib_se);
             checkoutAndPull("master", component);
             checkoutAndPull("master", component_ee);
-            checkoutAndPull("master", tdi_studio_se);
-            checkoutAndPull("master", tdi_studio_ee);
-            checkoutAndPull("master", tbd_studio_se);
-            checkoutAndPull("master", tcommon_studio_se);
-            checkoutAndPull("master", tcommon_studio_ee);
+//            checkoutAndPull("master", tdi_studio_se);
+//            checkoutAndPull("master", tdi_studio_ee);
+//            checkoutAndPull("master", tbd_studio_se);
+//            checkoutAndPull("master", tcommon_studio_se);
+//            checkoutAndPull("master", tcommon_studio_ee);
+            checkoutAndPull("master", talend_sap_api);
+            checkoutAndPull("master", tsap_rfc_server);
+
+        } else if ("all".equals(branchName)) {
+            checkoutAndPull("feat/QTDI-2292_security", se);
+            checkoutAndPull("feat/QTDI-2292_security", ee);
+            checkoutAndPull("feat/QTDI-2292_security", cloud);
+            checkoutAndPull("main", connectors_lib_se);
+            checkoutAndPull("feat/QTDI-2292_security", component);
+            checkoutAndPull("feat/QTDI-2292_security", component_ee);
+            //            checkoutAndPull("master", tdi_studio_se);
+            //            checkoutAndPull("master", tdi_studio_ee);
+            //            checkoutAndPull("master", tbd_studio_se);
+            //            checkoutAndPull("master", tcommon_studio_se);
+            //            checkoutAndPull("master", tcommon_studio_ee);
             checkoutAndPull("master", talend_sap_api);
             checkoutAndPull("master", tsap_rfc_server);
 
@@ -248,11 +266,12 @@ maintenance 开头的branch不能提交，会检查并报错
             checkoutAndPull(branchName, connectors_lib_se);
             checkoutAndPull(branchName, component);
             checkoutAndPull(branchName, component_ee);
-            checkoutAndPull(branchName, tdi_studio_se);
-            checkoutAndPull(branchName, tdi_studio_ee);
-            checkoutAndPull(branchName, tbd_studio_se);
-            checkoutAndPull(branchName, tcommon_studio_se);
-            checkoutAndPull(branchName, tcommon_studio_ee);
+            checkoutAndPull(branchName, studio_in_one);
+//            checkoutAndPull(branchName, tdi_studio_se);
+//            checkoutAndPull(branchName, tdi_studio_ee);
+//            checkoutAndPull(branchName, tbd_studio_se);
+//            checkoutAndPull(branchName, tcommon_studio_se);
+//            checkoutAndPull(branchName, tcommon_studio_ee);
             checkoutAndPull(branchName, talend_sap_api);
             checkoutAndPull(branchName, tsap_rfc_server);
         }
@@ -316,11 +335,12 @@ maintenance 开头的branch不能提交，会检查并报错
         cleanRepository(connectors_lib_se);
         cleanRepository(component);
         cleanRepository(component_ee);
-        cleanRepository(tdi_studio_se);
-        cleanRepository(tdi_studio_ee);
-        cleanRepository(tbd_studio_se);
-        cleanRepository(tcommon_studio_se);
-        cleanRepository(tcommon_studio_ee);
+        cleanRepository(studio_in_one);
+//        cleanRepository(tdi_studio_se);
+//        cleanRepository(tdi_studio_ee);
+//        cleanRepository(tbd_studio_se);
+//        cleanRepository(tcommon_studio_se);
+//        cleanRepository(tcommon_studio_ee);
         cleanRepository(talend_sap_api);
         cleanRepository(tsap_rfc_server);
     }
@@ -345,6 +365,8 @@ maintenance 开头的branch不能提交，会检查并报错
             return "master";
         } else if ("maintenance/tdp".equals(branch)) {
             return "tdp";
+        } else if ("feat/QTDI-2292_security".equals(branch)) {
+            return "all";
         } else {
             return branch;
         }

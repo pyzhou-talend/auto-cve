@@ -47,7 +47,7 @@ public class RunAll {
         logFileSearcher.searchJar(Context.jarName,Context.tbd_studio_se_components,".xml");
 
 
-        gitUtil.createBranchViaResult();
+//        gitUtil.createBranchViaResult();
 //        gitUtil.commitAndPush();
 
 
